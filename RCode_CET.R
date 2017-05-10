@@ -3,13 +3,13 @@
 #Central England Temperatures from 1659-2016
 
 
-setwd("C:/Users/PHAN/Google Drive/UChicago/5th Year/Winter Quarter/STAT 261/Project")
+#setwd() # Set path
 set.seed(42)
 
 library(astsa)
 
 
-## Data import and cleaning, define variables and stuff ##
+## Data import and cleaning, define variables ##
 temp = read.table("temp.txt", header=T) #import data
 temp[temp == -99.9] = NA #change default NA value
 
@@ -66,12 +66,6 @@ lines(ksmooth(year.year[330:356], temp.year.avg[330:356], "normal", bandwidth=3)
 ## Other Figures
 plot(year.qtr, temp.qtr, type="l", ylab="Temperature", xlab="Year", main="Central England Temperature (raw)")
 plot(year.year, temp.year.avg, type="l", ylab="Temperature", xlab="Year", main="CET Yearly Averages")
-
-
-
-
-#lines(ksmooth(year.year, temp.year.avg, "normal", bandwidth=10))
-
 
 
 regr = ar.ols(temp.year.avg, order=100)
